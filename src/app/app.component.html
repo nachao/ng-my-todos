@@ -3,11 +3,28 @@
   <!-- // 输入 -->
   <input class="todo-input" placeholder="What needs to be done?" on-keydown="addTask($event)" />
 
+  <!-- // 编辑 -->
+  <form *ngIf="editStatus" [formGroup]="editItem" (ngSubmit)="editTaskSave()" class="todo-form">
+    <div class="todo-form-row">
+      <input formControlName="title" class="todo-form-control todo-form-input" placeholder="任务到期时间（YYYY/MM/DD）" >
+    </div>
+    <div class="todo-form-row">
+      <textarea formControlName="describe" class="todo-form-control todo-form-textarea" placeholder="任务备注"></textarea>
+    </div>
+    <div class="todo-form-row">
+      <button type="submit" class="todo-form-control todo-form-button todo-form-button--primary">保存</button>
+      <button (click)="editTaskQuit()" type="button" class="todo-form-control todo-form-button">取消</button>
+    </div>
+  </form>
+  <!-- </form> -->
+
   <!-- // 展示 -->
   <ul *ngIf="list.length > 0" class="todo-list">
     <li *ngFor="let item of list" class="todo-item" >
-      <span class="todo-item-text">{{ item }}</span>
+      <span class="todo-item-text">{{ item.title }}</span>
+      <span class="todo-item-delete" (click)="editTask(item)">Edit</span>
       <span class="todo-item-delete" (click)="delTask(item)">Del</span>
+      <p class="todo-item-describe" *ngIf="item.describe" >{{ item.describe }}</p>
     </li>
   </ul>
 

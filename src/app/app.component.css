@@ -24,6 +24,85 @@
     font-style: italic;
 }
 
+/* 表单 */
+.todo-form {
+    padding: 40px;
+}
+
+.todo-form-row {
+    margin-top: 20px;
+}
+
+.todo-form-row:first-child {
+    margin-top: 0px;
+}
+
+.todo-form-control {
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+    font-family: 微软雅黑;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.todo-form-control:focus {
+    border-color: #aaa;
+}
+
+.todo-form-control::-webkit-input-placeholder {
+    color: #eee;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.todo-form-input {
+    width: 400px;
+    height: 40px;
+}
+
+.todo-form-textarea {
+    width: 400px;
+    height: 100px;
+}
+
+.todo-form-select {
+    width: 400px;
+}
+
+.todo-form-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+
+.todo-form-button--primary {
+
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+}
+
 /* 列表样式 */
 ul,li {
     list-style: none;
@@ -41,20 +120,31 @@ ul,li {
 }
 
 .todo-item {
-    height: 50px;
-    line-height: 50px;
+    min-height: 50px;
     padding: 0 10px 0 50px;
     border-bottom: 1px solid #eee;
     font-family: 微软雅黑;
     font-size: 18px;
     color: #666;
     display: grid;
-    grid-template-columns: auto 50px;
+    grid-template-columns: auto 50px 50px;
+}
+
+.todo-item-text {
+    line-height: 50px;
+}
+
+.todo-item-describe {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0px;
+    padding-bottom: 10px;
 }
 
 /* 列表样式 - 删除按钮 */
 .todo-item-delete {
-    display: none;
+    line-height: 50px;
+    visibility: hidden;
     text-align: center;
     cursor: pointer;
     color: #ffc3a6;
@@ -68,5 +158,5 @@ ul,li {
 }
 
 .todo-item:hover .todo-item-delete {
-    display: block;
+    visibility: visible;
 }
