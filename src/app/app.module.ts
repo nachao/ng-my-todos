@@ -1,18 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { FavoriteColorComponent } from './favorite-color/favorite-color.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FavoriteColorComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
