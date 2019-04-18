@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { FormGroup, FormControl } from '@angular/forms';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor (private todoService: TodoService) {}
 
   // 用于存储任务列表
   list = [];
 
   // 表单数据
   editStatus = false
-  // editItem = new FormGroup({
-  //   id: new FormControl(''),
-  //   title: new FormControl(''),
-  //   describe: new FormControl('')
-  // });
-
-  // 编辑数据
-  editItem = null
+  
+  // 获取列表
+  getHeroes() {
+    this.list = this.todoService.getTodos();
+  }
 
   // 数据
   itemTask (id, title) {
   	return {
       id,
-  		title,
+      title,
+      finish: false,
   		describe: ''
   	}
   }
@@ -40,9 +39,8 @@ export class AppComponent {
     // 如果是回车键
     // 则存储内容
     if (event.code === 'Enter') {
-      this.list.push(this.itemTask(
-        this.list.length + 1,
-        event.target.value));
+      const item = this.itemTask(this.list.length + 1, event.target.value)
+      this.todoService.addTodo(item);
 
       // 重置输入框
       event.target.value = '';
@@ -54,8 +52,13 @@ export class AppComponent {
    * @param item
    */
   delTask (item) {
-    this.list.splice(this.list.indexOf(item), 1);
+    this.todoService.delTodo(item);
   }
+
+  // ----
+
+  // 编辑数据  
+  editItem = null
 
   /**
    * 编辑操作
@@ -66,9 +69,17 @@ export class AppComponent {
   editTaskSave () {
     const item = this.list.find(d => d.id === this.editItem.id)
     Object.assign(item, this.editItem)
+    this.todoService.setTodo(item)
     this.editTaskQuit()
   }
   editTaskQuit () {
     this.editItem = null
+  }
+
+  // ----
+
+  // 初始化
+  ngOnInit() {
+    this.getHeroes();
   }
 }

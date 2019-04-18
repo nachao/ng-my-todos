@@ -1,7 +1,7 @@
 <div class="todo-container">
 
   <!-- // 输入 -->
-  <input class="todo-input" placeholder="What needs to be done?" on-keydown="addTask($event)" />
+  <input class="todo-input" placeholder="What needs to be done?" on-keydown.enter="addTask($event)" />
 
   <!-- // 编辑 -->
   <!-- <form *ngIf="editStatus" [formGroup]="editItem" (ngSubmit)="editTaskSave()" class="todo-form">
@@ -48,10 +48,16 @@
 
   <!-- // 展示 -->
   <ul *ngIf="list.length > 0" class="todo-list">
-    <li *ngFor="let item of list" class="todo-item" >
-      <span class="todo-item-text">{{ item.title }}</span>
-      <span class="todo-item-delete" (click)="editTask(item)">Edit</span>
-      <span class="todo-item-delete" (click)="delTask(item)">Del</span>
+    <li *ngFor="let item of list" class="todo-item" [class.todo-item--finish]="item.finish" >
+      <div class="todo-item-content">
+        <div
+          class="todo-item-checkbox"
+          (click)="item.finish = !item.finish"><i></i>
+        </div>
+        <span class="todo-item-text">{{ item.title }}</span>
+        <span class="todo-item-delete" (click)="editTask(item)">Edit</span>
+        <span class="todo-item-delete" (click)="delTask(item)">Del</span>
+      </div>
       <p class="todo-item-describe" *ngIf="item.describe" >{{ item.describe }}</p>
     </li>
   </ul>

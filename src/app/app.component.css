@@ -102,13 +102,16 @@ ul,li {
 
 .todo-item {
     min-height: 50px;
-    padding: 0 10px 0 50px;
+    padding: 0 10px;
     border-bottom: 1px solid #eee;
     font-family: 微软雅黑;
     font-size: 18px;
     color: #666;
+}
+
+.todo-item-content {
     display: grid;
-    grid-template-columns: auto 50px 50px;
+    grid-template-columns: 50px auto 50px 50px;
 }
 
 .todo-item-text {
@@ -120,7 +123,35 @@ ul,li {
     color: #aaa;
     margin: 0px;
     padding-bottom: 10px;
+    margin-left: 50px;
 }
+
+.todo-item-checkbox {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    margin-top: 9px;
+    cursor: pointer;
+}
+
+.todo-item-checkbox i {
+    display: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    background: #67C23A;
+    margin: 1px;
+}
+
+.todo-item--finish .todo-item-checkbox i {
+    display: block;
+}
+.todo-item--finish .todo-item-text {
+    text-decoration: line-through;
+}
+
 
 /* 列表样式 - 删除按钮 */
 .todo-item-delete {
